@@ -1,0 +1,34 @@
+from visual import *
+ball1 = sphere (pos=(-5,0,0), radius=.2, color=color.red)
+ball2 = sphere (pos=(5,0,0), radius = 0.5, color= color.cyan)
+ball1.velocity = vector(0.1,0.1,0)
+ball2.velocity= vector(-0.1,0.1,0)
+
+dx = ball2.pos.x-ball1.pos.x
+dy = ball2.pos.y-ball1.pos.y
+vdx = ball2.velocity.x-ball1.velocity.x
+vdy = ball2.velocity.y-ball1.velocity.y
+R = ball1.radius+ball2.radius
+c = (dx) **2+ (dy) **2 -(R) **2
+b = 2 *(dx*vdx+dy*vdy)
+a = (vdx)**2+(vdy)**2
+m = ((b**2)-(4*c*a))
+if m<0:
+    print "the balls will not collide"
+    
+else :
+    y = m** 0.5
+    d=-b+y
+    e = 2*a
+    t1 = d/ float(e)
+    d2 = -b-y
+    t2 = (d2)/ float(e)
+    if t1>= 0:
+        if t1<t2:
+            print "the balls will collide at", t1;
+        
+    if t2>=0:
+        if t2<t1:
+            print "balls collide at ", t2;
+    else:
+        print "they will not collide now";

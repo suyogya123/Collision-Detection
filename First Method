@@ -1,0 +1,26 @@
+from visual import *
+ball1 = sphere (pos=(-5,0, 0), radius=.2, color=color.red)
+ball2 = sphere (pos= (5, 0, 0), radius = 0.5, color= color.cyan)
+ball1.velocity = vector (0.1, 0.1, 0)
+ball2.velocity= vector (-0.1, 0.1, 0)
+def dis (ball1, ball2):
+    return ((ball2.pos.x-ball1.pos.x) **2 + (ball2.pos.y-ball1.pos.y)**2+(ball2.pos.z-ball1.pos.z)**2)**0.5
+t = 0
+dt = 0.05
+while t<100:
+    rate (100)
+    ball1.pos.x = ball1.pos.x + ball1.velocity.x*dt
+    ball2.pos.x = ball2.pos.x + ball2.velocity.x*dt
+    ball1.pos.y = ball1.pos.y + ball1.velocity.y*dt
+    ball2.pos.y = ball2.pos.y + ball2.velocity.y*dt
+    if dis (ball1, ball2) <= ball1.radius+ball2.radius: 
+        ball1.visible = False
+        ball2.visible = False
+        print "Balls will collide at:", t;
+        break
+        
+    t= t+dt
+if dis(ball1, ball2)>ball1.radius+ball2.radius: 
+    ball1.visible = False
+    ball2.visible = False
+    print "Balls will not collide" 

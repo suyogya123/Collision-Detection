@@ -70,3 +70,62 @@ The fun part was that with the same initial conditions, both my codes works and 
 
 ##This was my approach to detect collisions of two spheres. If you have new ideas , or you want to add anyhting to my code Please feel free to fork the project and contribute.Thank You!
 
+
+
+
+................................................................................
+As I worked down on my collision of balls in two dimensional, I really wanted to detect collision in three dimensional as well. The concept behind the detection of collisions is still the same. You are given a particular initial condition. Now in my program I have added one additional feature that is for user to input the balls initial positions. If you want you can do the same with the velocity. That will make the program even more efficient, as user can input many initial conditions of the balls as they want and it will still be able to detect collisions by single code. Even though the method is similar, the math makes it a little trickier to work in three dimensional. As I mentioned earlier the second method which was to solve for time is more efficient. So at first I mathematically solve for time ‘t’. So that takes me back to the similar method of solving for t using kinematic equations. 
+  As a program to let user input both the balls initial position. The following code allows user to input x,y,z co-ordinate of both the balls.
+  
+    x = int(raw_input (" x position of ball1 ="))
+    y = int(raw_input (" y position of ball1 ="))
+    z= int(raw_input (" z position of ball1 ="))
+    j = int(raw_input (" x position of ball2 ="))
+    k = int(raw_input (" y position of ball2 ="))
+    l= int(raw_input (" z position of ball2 ="))
+The velocity of both the balls are also given. It can also be made a user defined like the earlier one.But, here I have defined it . So using kinematic equation we have,
+Using kinematic equation,
+
+    X1 =X01+Vx1*t
+    Y1 =Y01+Vy1*t
+    Z1 = Z01+Vy1*t
+    X2 =X02+Vx2*t
+    Y2 =Y02+Vy2*t
+    Z2 = Z02+Vz2*t
+So then after time t, distance between the both the ball can be calculated from distance formula,
+((X2-X1) **2+ (Y2-Y1) **2+(Z2-Z1)**)**0.5 
+ So using the condition of distance between them equal to the total radius, the only unknown ‘t’ can be calculated
+((X2-X1) **2+ (Y2-Y1) **2+(Z2-Z1)**2) = R**2
+Then plugging back the kinematic equation for each of them as mentioned above, we get a quadratic equation of this form
+(dx)^2+(dy)^^2 +(dz)^2– R^2+ (2*dx*vdx+2*dy*vdy+2*dz*vdz)* t+((vdx)^2+(vdy)^2+(vdz)^2)*t^2 =0
+ Where, 
+ 
+    dx = X02 –X01 
+	 dy = Y02-Y01
+	 dz = Z02-Z01
+	 vdx =Vx2-Vx1
+	 vdy = Vy2 –Vy1
+	 vdz = Vz2-Vz1
+	 
+	As you can see in the code,
+	
+	dx = ball2.pos.x-ball1.pos.x
+    dy = ball2.pos.y-ball1.pos.y
+    dz = ball2.pos.z-ball1.pos.z
+    vdx = ball2.velocity.x-ball1.velocity.x
+    vdy = ball2.velocity.y-ball1.velocity.y
+    vdz = ball2.velocity.z-ball1.velocity.z
+Now comparing the quadratic equation we have
+
+Where ,
+
+    a = (vdx)^2 +(vdy)^2 +(vdz)^2
+	b = 2*(dx*vdx+dy*vdy+vdz*dz)
+	c = (rdx)^2 +(rdy)^2 +(rdz)^2–R^2
+So by using 
+
+    t = (-b+((b^2)-(4*a*c)))/2*a  or t = (-b-((b^2)-(4*a*c)))/2*a
+This will help to detect the time for the collisions of two balls. The first positive value of t determines the time for the collisions of two balls. If it is not defined it determines that there will be no collision of the balls.
+The technique is very efficient and works great in 3 dimensional as well. Just need to be careful in calculating the time before doing any coding.
+##I really enjoyed working in this. I would really like to thank my physics professor Dr. Allain who encouraged and always helped me on this.
+

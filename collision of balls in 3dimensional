@@ -1,0 +1,52 @@
+from visual import *
+
+x = int(raw_input (" x position of ball1 ="))
+y = int(raw_input (" y position of ball1 ="))
+z= int(raw_input (" z position of ball1 ="))
+j = int(raw_input (" x position of ball2 ="))
+k = int(raw_input (" y position of ball2 ="))
+l= int(raw_input (" z position of ball2 ="))
+
+ball1 = sphere (pos=(x,y,z), radius=.2, color=color.red)
+ball2 = sphere (pos=(j,k,l), radius = 0.5, color= color.cyan)
+ball1.velocity = vector(-0.1,-0.1,0.5)
+ball2.velocity= vector(0.4,-0.2,0.6)
+
+
+rdx = ball2.pos.x-ball1.pos.x
+rdy = ball2.pos.y-ball1.pos.y
+rdz = ball2.pos.z- ball1.pos.z
+
+vdx = ball2.velocity.x-ball1.velocity.x
+vdy = ball2.velocity.y-ball1.velocity.y
+vdz = ball2.velocity.z-ball1.velocity.z
+
+R = ball1.radius+ball2.radius
+u = (rdx)**2+(rdy)**2 +(rdz)**2-(R)**2
+v = 2 *(rdx*vdx+rdy*vdy+rdz*vdz)
+k =(vdx)**2+(vdy)**2+(vdz)**2
+m = ((v**2)-(4*u*k))
+print m
+if m<0:
+    print "the balls will not collide"
+    
+else :
+    y = m** 0.5
+    print y
+    a =-v+y
+    print a
+    b = 2*k
+    t1 = a/ float(b)
+    print t1
+    a2 = -v-y
+    t2 = (a2)/ float(b)
+    print t2
+    if t1>= 0 :
+        print"the balls will collide at", t1;
+    if t2>=0:
+        print "balls collide at ", t2;
+    else:
+        print "they will not collide now";
+    
+    print R;
+    print v;
